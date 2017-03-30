@@ -31,6 +31,10 @@ Running this will create a blob called *whatevs.xml* in your desired account and
     static void Main(string[] args)
     {
         var test = AzureXmlSerializerHelper.Download<Thing>(new BlobUri("{your account}", "{your container}", "whatevs.xml"));
+        Console.WriteLine($"FirstName = {test.FirstName}");
+        Console.WriteLine($"LastName = {test.LastName}");
+        Console.WriteLine($"Date = {test.Date}");
+        Console.ReadLine();
     }
     
 You can omit the credentials argument if the container doesn't require it. Credentials are typically required for uploads although the `Upload` method marks them as optional to be consistent with the `Download` method.
