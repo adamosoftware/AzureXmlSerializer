@@ -34,3 +34,5 @@ Running this will create a blob called *whatevs.xml* in your desired account and
     }
     
 You can omit the credentials argument if the container doesn't require it. Credentials are typically required for uploads although the `Upload` method marks them as optional to be consistent with the `Download` method.
+
+The `BlobUri` object is a helper class that makes it easier to form blob URIs from the relevant components account name, container, and blob path. You can use an ordinary string also, but I find the BlobUri handy.
