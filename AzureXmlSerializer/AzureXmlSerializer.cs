@@ -2,6 +2,7 @@
 using Microsoft.WindowsAzure.Storage.Blob;
 using System;
 using System.IO;
+using System.Threading.Tasks;
 using System.Xml.Serialization;
 
 namespace AdamOneilSoftware
@@ -11,11 +12,6 @@ namespace AdamOneilSoftware
         public static T Download<T>(BlobUri blobUri, StorageCredentials credentials = null)
         {
             return Download<T>(blobUri.ToString(), credentials);
-        }
-
-        public static void Upload<T>(T @object, BlobUri blobUri, StorageCredentials credentials = null)
-        {
-            Upload<T>(@object, blobUri.ToString(), credentials);
         }
 
         public static T Download<T>(string uri, StorageCredentials credentials = null)
@@ -32,6 +28,21 @@ namespace AdamOneilSoftware
             return result;
         }
 
+        public async static Task DownloadAsync<T>(string uri, StorageCredentials credentials = null)
+        {
+            await Task.Run(() => Download<T>(uri, credentials));
+        }
+
+        public async static Task DownloadAsync<T>(BlobUri blobUri, StorageCredentials credentials = null)
+        {
+            await Task.Run(() => Download<T>(blobUri, credentials));
+        }
+
+        public static void Upload<T>(T @object, BlobUri blobUri, StorageCredentials credentials = null)
+        {
+            Upload<T>(@object, blobUri.ToString(), credentials);
+        }
+
         public static void Upload<T>(T @object, string uri, StorageCredentials credentials = null)
         {
             // thanks to http://stackoverflow.com/questions/11033739/how-do-i-serialize-a-net-object-into-azure-blob-storage-without-using-a-tempora
@@ -44,5 +55,15 @@ namespace AdamOneilSoftware
                 blob.UploadFromStream(stream);
             }
         }
-	}
+
+        public async static Task UploadAsync<T>(T @object, string uri, StorageCredentials credentials = null)
+        {
+            await Task.Run(() => Upload(@object, uri, credentials));
+        }
+
+        public async static Task UploadAsync<T>(T @object, BlobUri blobUri, StorageCredentials credentials = null)
+        {
+            await Task.Run(() => Upload(@object, blobUri.ToString(), credentials));
+        }
+    }
 }
