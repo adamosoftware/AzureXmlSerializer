@@ -21,14 +21,13 @@
     <Id>AoAzureXmlSerializer</Id>
     <Version>1.0.0</Version>
     <Title>Azure Xml Serializer</Title>
-    <Authors>Adam</Authors>
-    <Owners>Adam</Owners>
+    <Authors>Adam O'Neil</Authors>
+    <Owners>Adam O'Neil</Owners>
     <Summary>Serialize and deserialize objects to XML in Azure blob storage</Summary>
     <Description>Serialize and deserialize objects to XML in Azure blob storage</Description>
     <ReleaseNotes>
     </ReleaseNotes>
-    <ProjectUrl>
-    </ProjectUrl>
+    <ProjectUrl>https://github.com/adamosoftware/AzureXmlSerializer</ProjectUrl>
     <LicenseUrl>
     </LicenseUrl>
     <Copyright>Copyright © Adam O'Neil Software 2017</Copyright>

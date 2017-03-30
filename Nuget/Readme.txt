@@ -1,1 +1,1 @@
-﻿Please see 
+﻿Please see https://github.com/adamosoftware/AzureXmlSerializer/blob/master/README.md
