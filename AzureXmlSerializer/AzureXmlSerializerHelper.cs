@@ -7,7 +7,7 @@ using System.Xml.Serialization;
 
 namespace AdamOneilSoftware
 {
-    public static class AzureXmlSerializer
+    public static class AzureXmlSerializerHelper
 	{
         public static T Download<T>(BlobUri blobUri, StorageCredentials credentials = null)
         {
