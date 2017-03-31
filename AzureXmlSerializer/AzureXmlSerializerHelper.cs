@@ -28,14 +28,23 @@ namespace AdamOneilSoftware
             return result;
         }
 
-        public async static Task DownloadAsync<T>(string uri, StorageCredentials credentials = null)
+        public async static Task<T> DownloadAsync<T>(string uri, StorageCredentials credentials = null)
         {
-            await Task.Run(() => Download<T>(uri, credentials));
+            CloudBlockBlob blob = new CloudBlockBlob(new Uri(uri), credentials);
+            T result = default(T);
+            using (var stream = new MemoryStream())
+            {
+                await blob.DownloadToStreamAsync(stream);
+                XmlSerializer xs = new XmlSerializer(typeof(T));
+                stream.Seek(0, SeekOrigin.Begin);
+                result = (T)xs.Deserialize(stream);
+            }
+            return result;
         }
 
-        public async static Task DownloadAsync<T>(BlobUri blobUri, StorageCredentials credentials = null)
+        public async static Task<T> DownloadAsync<T>(BlobUri blobUri, StorageCredentials credentials = null)
         {
-            await Task.Run(() => Download<T>(blobUri, credentials));
+            return await DownloadAsync<T>(blobUri.ToString(), credentials);
         }
 
         public static void Upload<T>(T @object, BlobUri blobUri, StorageCredentials credentials = null)
@@ -54,6 +63,18 @@ namespace AdamOneilSoftware
                 stream.Seek(0, SeekOrigin.Begin);
                 blob.UploadFromStream(stream);
             }
+        }
+
+        public static void Upload<T>(T @object, BlobUri blobUri, string keyValue)
+        {
+            StorageCredentials credentials = new StorageCredentials(blobUri.StorageAccountName, keyValue);
+            Upload<T>(@object, blobUri, credentials);
+        }
+
+        public async static Task UploadAsync<T>(T @object, BlobUri blobUri, string keyValue)
+        {
+            StorageCredentials credentials = new StorageCredentials(blobUri.StorageAccountName, keyValue);
+            await UploadAsync(@object, blobUri, credentials);
         }
 
         public async static Task UploadAsync<T>(T @object, string uri, StorageCredentials credentials = null)
