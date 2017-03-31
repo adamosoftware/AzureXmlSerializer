@@ -20,8 +20,13 @@ namespace Test
                 */
 
             var test = AzureXmlSerializerHelper.Download<Thing>(
-                new BlobUri("adamosoftware", "install", "whatevs.xml"),
-                new StorageCredentials("adamosoftware", "CnwT4Y9GiATbmKvVgJk0y0s8plhddOugoHM5ZUm6tskN+gq2g2xEWpYSamdgcRhby12SOuDHN9/vshAHK5VsGw=="));
+                new BlobUri("adamosoftware", "install", "whatevs.xml")/*,
+                new StorageCredentials("adamosoftware", "CnwT4Y9GiATbmKvVgJk0y0s8plhddOugoHM5ZUm6tskN+gq2g2xEWpYSamdgcRhby12SOuDHN9/vshAHK5VsGw==")*/);
+
+            Console.WriteLine($"FirstName = {test.FirstName}");
+            Console.WriteLine($"LastName = {test.LastName}");
+            Console.WriteLine($"Date = {test.Date}");
+            Console.ReadLine();
         }
     }
 
