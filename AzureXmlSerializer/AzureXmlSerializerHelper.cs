@@ -14,6 +14,11 @@ namespace AdamOneilSoftware
             return Download<T>(blobUri.ToString(), credentials);
         }
 
+        public static T Download<T>(Uri uri, StorageCredentials credentials = null)
+        {
+            return Download<T>(uri.ToString(), credentials);
+        }
+
         public static T Download<T>(string uri, StorageCredentials credentials = null)
         {
             CloudBlockBlob blob = new CloudBlockBlob(new Uri(uri), credentials);
@@ -26,6 +31,11 @@ namespace AdamOneilSoftware
                 result = (T)xs.Deserialize(stream);
             }
             return result;
+        }
+
+        public async static Task<T> DownloadAsync<T>(Uri uri, StorageCredentials credentials = null)
+        {
+            return await DownloadAsync<T>(uri.ToString(), credentials);
         }
 
         public async static Task<T> DownloadAsync<T>(string uri, StorageCredentials credentials = null)

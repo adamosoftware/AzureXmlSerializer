@@ -12,9 +12,13 @@ namespace Test
     {
         static void Main(string[] args)
         {
-            TestUploadAsync();
-
+            //TestUploadAsync();
             //TestAsyncDownload();
+            var b = new BlobUri("adamosoftware", "install", "whatevs2.xml");
+            Console.WriteLine($"Exists = {b.Exists()}");
+            Console.WriteLine($"ExistsAsync = {b.ExistsAsync()}");
+            
+
             Console.ReadLine();
         }
 
