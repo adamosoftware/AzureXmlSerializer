@@ -12,11 +12,17 @@ namespace Test
     {
         static void Main(string[] args)
         {
+            BlobUri b = new BlobUri("https://jonga.blob.core.windows.net:443/wifflebat/Krenshaw/Salmagundi/Fluvio.jpg");
+
+            Console.WriteLine(b.StorageAccountName);
+            Console.WriteLine(b.ContainerName);
+            Console.WriteLine(b.Path);
+
             //TestUploadAsync();
             //TestAsyncDownload();
-            var b = new BlobUri("adamosoftware", "install", "whatevs2.xml");
+            /*var b = new BlobUri("adamosoftware", "install", "whatevs2.xml");
             Console.WriteLine($"Exists = {b.Exists()}");
-            Console.WriteLine($"ExistsAsync = {b.ExistsAsync()}");
+            Console.WriteLine($"ExistsAsync = {b.ExistsAsync()}");*/
             
 
             Console.ReadLine();

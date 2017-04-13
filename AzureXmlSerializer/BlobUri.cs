@@ -1,6 +1,7 @@
 ﻿using Microsoft.WindowsAzure.Storage.Auth;
 using Microsoft.WindowsAzure.Storage.Blob;
 using System;
+using System.Linq;
 using System.Threading.Tasks;
 
 namespace AdamOneilSoftware
@@ -13,6 +14,14 @@ namespace AdamOneilSoftware
 
         public BlobUri()
         {
+        }
+
+        public BlobUri(string uri)
+        {
+            var blobUri = new Uri(uri);
+            StorageAccountName = blobUri.Authority.Split('.')[0];
+            ContainerName = blobUri.LocalPath.Split('/')[1];
+            Path = string.Join("/", blobUri.LocalPath.Split('/').Skip(2));
         }
 
         public BlobUri(string storageAccountName, string containerName, string path)
